@@ -115,9 +115,11 @@ function Chatroom(){
 }
 
 function ChatMessage(props){
-  const {text,uid,photoURL} = props.message
+  const {text,uid,photoURL,createdAt} = props.message
 
   const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received'
+
+  const date = new Date(createdAt.seconds*1000)
 
   return (<>
   
@@ -125,6 +127,7 @@ function ChatMessage(props){
 
     <img src = {photoURL} />
     <p>{text}</p>
+    <span>{date.toLocaleString('en-US')}</span>
 
     </div>
   
