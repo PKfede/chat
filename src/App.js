@@ -3,8 +3,6 @@ import logo from './logo.svg';
 import './App.css';
 import firebase from 'firebase/app'
 
-import {formatRelative} from 'date-fns';
-
 
 import 'firebase/firestore'
 import 'firebase/auth'
@@ -121,7 +119,7 @@ function ChatMessage(props){
 
   const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received'
 
-  //const date = new Date(createdAt*1000)
+  const date = new Date(createdAt.seconds*1000)
 
   return (<>
   
@@ -129,7 +127,7 @@ function ChatMessage(props){
 
     <img src = {photoURL} />
     <p>{text}</p>
-    <span>{formatRelative(new Date(createdAt *1000), new Date())}</span>
+    <p>{date.toLocaleString('en-US')}</p>
 
     </div>
   
