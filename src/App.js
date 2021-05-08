@@ -2,6 +2,7 @@ import React, {useRef, useState} from 'react'
 import logo from './logo.svg';
 import './App.css';
 import firebase from 'firebase/app'
+import moment from 'moment'
 
 
 import 'firebase/firestore'
@@ -119,7 +120,7 @@ function ChatMessage(props){
 
   const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received'
 
-  const date = new Date(createdAt.seconds*1000)
+  const date = createdAt.toDate().getTime()
 
   return (<>
   
@@ -127,7 +128,8 @@ function ChatMessage(props){
 
     <img src = {photoURL} />
     <p>{text}</p>
-    <p>{date.toLocaleString('en-US')}</p>
+    {/* <p>{date.toLocaleString('en-US')}</p> */}
+    <p>{moment(date).format('LLL')}</p>
 
     </div>
   
