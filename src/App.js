@@ -120,7 +120,7 @@ function ChatMessage(props){
 
   const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received'
 
-  const date = createdAt.toDate().getTime()
+  const date = createdAt ? createdAt.toDate().getTime() : null
 
   return (<>
   
@@ -129,7 +129,7 @@ function ChatMessage(props){
     <img src = {photoURL} />
     <p>{text}</p>
     {/* <p>{date.toLocaleString('en-US')}</p> */}
-    <p>{moment(date).format('LLL')}</p>
+    <span>{date ? moment(date).format('LLL') : "..."}</span>
 
     </div>
   
